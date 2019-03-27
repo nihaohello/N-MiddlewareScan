@@ -8,5 +8,6 @@ class plugins(object):
         self.options=options
     def run(self):
         axis(self.url)
+        #others
 
 

@@ -4,5 +4,6 @@ with open("temp.txt",encoding="utf-8") as f:
         i=i.rstrip("\n").split(" 	")[0]
         i=i.replace("-","_")
         #i="def "+i+"(url):\n"+"    "+"headers = {'User-Agent': get_user_agent()}"
-        print(i+"(url)")
+        #print(i+"(url)")
+        print(i)
 f.close()

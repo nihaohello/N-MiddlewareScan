@@ -51,6 +51,4 @@ def main():
     print("相关漏洞检测完成。")
 if __name__ == '__main__':
     print("开始检测中间件相关漏洞:")
-    main()
-
-
+main()
