@@ -1,6 +1,7 @@
 #plugins vuln poc exp  
 主要是下面模块：  
 1.axis  
+xss  弱密码  
 2.glashfish  
 3.jboss  
 4.resin  
