@@ -18,7 +18,7 @@ def axis_admin(host):
         url = "http://%s" % (host)
         headers = {'User-Agent': get_user_agent()}
         error_i = 0
-        flag_list = ['Administration Page</title>', 'System Components', '"axis2-admin/upload"',
+        flag_list = ['Administration Page</title>', 'System Components', 'axis2-admin/upload',
                      'include page="footer.inc">', 'axis2-admin/logout']
         user_list = ['axis', 'admin', 'manager', 'root']
         pass_list = ['', 'axis', 'axis2', '123456', '12345678', 'password', '123456789', 'admin123', 'admin888',
