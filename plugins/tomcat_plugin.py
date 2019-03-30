@@ -1,0 +1,15 @@
+#coding=utf-8
+pocs=[
+    {"requests_option":"",
+     "url":["/manager/html/upload"],
+     "params":[],
+     "data":[],
+     "flag":[],
+     "success":"",
+     "fail":"",
+     "end":"",
+     "admin_bursk":"",
+     "username":[],
+     "password":[],
+     },
+]

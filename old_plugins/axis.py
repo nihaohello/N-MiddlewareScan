@@ -20,8 +20,8 @@ def axis_admin(host):
         error_i = 0
         flag_list = ['Administration Page</title>', 'System Components', 'axis2-admin/upload',
                      'include page="footer.inc">', 'axis2-admin/logout']
-        user_list = ['axis', 'admin', 'manager', 'root']
-        pass_list = ['', 'axis', 'axis2', '123456', '12345678', 'password', '123456789', 'admin123', 'admin888',
+        user_list = ['axis_plugin_catalog', 'admin', 'manager', 'root']
+        pass_list = ['', 'axis_plugin_catalog', 'axis2', '123456', '12345678', 'password', '123456789', 'admin123', 'admin888',
                      'admin1', 'administrator', '8888888', '123123', 'admin', 'manager', 'root']
         for user in user_list:
             for password in pass_list:
@@ -31,14 +31,14 @@ def axis_admin(host):
                     request = requests.post(url=login_url, data=PostStr, headers=headers)
                     res_html = res.text
                 except Exception:
-                    return 'axis no weak password。'
+                    return 'axis_plugin_catalog no weak password。'
                 for flag in flag_list:
                     if flag in res_html:
                         info = '%s Axis Weak password %s:%s' % (login_url, user, password)
                         return 'YES|' + info
-        return 'axis no weak password。'
+        return 'axis_plugin_catalog no weak password。'
     except Exception:
-        return 'axis no weak password。'
+        return 'axis_plugin_catalog no weak password。'
 
 def axis_info(host):
     try:
@@ -49,13 +49,13 @@ def axis_info(host):
             s = requests.get(url=url, headers=headers)
             res_html = s.text
         except Exception:
-            return 'no axis info。'
+            return 'no axis_plugin_catalog info。'
         if "Axis2 Happiness Page" in res_html:
             info = vul_url + " Axis Information Disclosure"
             return 'YES|' + info
-        return 'no axis info。'
+        return 'no axis_plugin_catalog info。'
     except Exception:
-        return 'no axis info。'
+        return 'no axis_plugin_catalog info。'
 def axis(url):
     cve__2018_10661=CVE_2018_10661(url)
     print(cve__2018_10661)

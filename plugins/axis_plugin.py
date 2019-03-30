@@ -33,7 +33,7 @@ pocs=[
      "fail":"/axis2/axis2-admin/login不存在弱口令",
      "end":"/axis2/axis2-admin/login弱口令扫描完成",
      "admin_bursk":"True",
-     "username":['axis', 'admin', 'manager', 'root'],
-     "password":['', 'axis', 'axis2', '123456', '12345678', 'password', '123456789', 'admin123', 'admin888',                'admin1', 'administrator', '8888888', '123123', 'admin', 'manager', 'root'],
+     "username":['axis_plugin_catalog', 'admin', 'manager', 'root'],
+     "password":['', 'axis_plugin_catalog', 'axis2', '123456', '12345678', 'password', '123456789', 'admin123', 'admin888',                'admin1', 'administrator', '8888888', '123123', 'admin', 'manager', 'root'],
      },
 ]

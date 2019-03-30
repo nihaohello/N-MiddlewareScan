@@ -232,6 +232,6 @@ def get_user_agent():
         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Ubuntu/11.10 Chromium/18.0.1025.142 Chrome/18.0.1025.142 Safari/535.19',
         'Mozilla/5.0 (Windows NT 5.1; U; de; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6 Opera 11.00'
     ]
-    return random.choice(user_agents)
+    return {"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Connection": "keep-alive","User-Agent":random.choice(user_agents)}
 
 
