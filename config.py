@@ -1,4 +1,5 @@
 ThreadNum=50
+Process=30
 Timeout=6
 port=80
 #linux

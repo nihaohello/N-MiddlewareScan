@@ -64,9 +64,12 @@ def poc(url):
         result = '[-]目标weblogic未检测到CVE-2017-3506'
         return result
 def run(rip,rport):
-    url=rip+':'+str(rport)
-    result = poc(url=url)
-    print(result)
+    try:
+        url = rip + ':' + str(rport)
+        result = poc(url=url)
+        print(result)
+    except Exception:
+        print("CVE_2017_3506脚本出错")
 
 if __name__ == '__main__':
     run('127.0.0.1',7001)

@@ -38,5 +38,8 @@ def IIS_shortname_Scanner(url):
     except Exception as e:
         raise Exception('[is_vul.Exception] %s' % str(e))
 def IIS_special_plugin_(arg,config):
-    IIS_PUT(arg,config)
-    IIS_shortname_Scanner(arg.url)
+    try:
+        IIS_PUT(arg,config)
+        IIS_shortname_Scanner(arg.url)
+    except Exception:
+        pass

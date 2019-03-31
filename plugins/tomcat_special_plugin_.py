@@ -6,6 +6,7 @@ import uuid
 from termcolor import cprint
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor
+import threading
 def requests_post(url,username,password,flag_list):
     try:
         login_url = url + '/manager/html'
@@ -79,6 +80,14 @@ class Exploit:
             cprint("[-] " + __file__ + "====>连接超时", "cyan")
 
 def tomcat_special_plugin_(arg,config):
-    Exploit().attack(arg.url)
-    crack_password(arg,config)
+    threads=[]
+    threads.append(threading.Thread(Exploit().attack(arg.url)))
+    threads.append(threading.Thread(crack_password(arg,config)))
+    for thread in threads:
+        try:
+            thread.start()
+        except Exception:
+            pass
+    for j in threads:
+        j.join()
 

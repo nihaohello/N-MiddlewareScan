@@ -19,11 +19,14 @@ def islive(ur,port):
     return r.status_code
 
 def run(url,port):
-    if islive(url,port)==200:
-        u='http://' + str(url)+':'+str(port)+'/console/login/LoginForm.jsp'
-        print(("[+]目标weblogic控制台地址暴露!\n[+]路径为:{}\n[+]请自行尝试弱口令爆破!".format(u)))
-    else:
-        print("[-]目标weblogic控制台地址未找到!")
+    try:
+        if islive(url, port) == 200:
+            u = 'http://' + str(url) + ':' + str(port) + '/console/login/LoginForm.jsp'
+            print(("[+]目标weblogic控制台地址暴露!\n[+]路径为:{}\n[+]请自行尝试弱口令爆破!".format(u)))
+        else:
+            print("[-]目标weblogic控制台地址未找到!")
+    except Exception:
+        print("managerURL200脚本出错")
 
 if __name__=="__main__":
     url = sys.argv[1]

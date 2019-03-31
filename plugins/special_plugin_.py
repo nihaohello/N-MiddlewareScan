@@ -22,7 +22,7 @@ def special_plugin_(arg,config):
         try:
             thread.start()
         except Exception as e:
-            print(e)
+            pass
     for t in threads:
         t.join()
 

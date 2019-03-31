@@ -20,10 +20,14 @@ def islive(ur,port):
     return r.status_code
 
 def run(url,port):
-    if islive(url,port)==200:
-        print(('[+]目标weblogic存在UDDI组件!\n[+]路径为:{}\n[+]请自行验证SSRF漏洞!'.format('http://' + str(url)+':'+str(port)+'/uddiexplorer/')))
-    else:
-        print("[-]目标weblogic UDDI组件默认路径不存在!")
+    try:
+        if islive(url, port) == 200:
+            print(('[+]目标weblogic存在UDDI组件!\n[+]路径为:{}\n[+]请自行验证SSRF漏洞!'.format(
+                'http://' + str(url) + ':' + str(port) + '/uddiexplorer/')))
+        else:
+            print("[-]目标weblogic UDDI组件默认路径不存在!")
+    except Exception:
+        print("uudi_ssrf脚本出错")
 
 if __name__=="__main__":
     url = sys.argv[1]
